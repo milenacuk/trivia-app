@@ -1,0 +1,5 @@
+const triviaModule = {
+
+};
+
+export { triviaModule };

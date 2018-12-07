@@ -7,10 +7,9 @@ const chuckModule = {
     actions: {
         async joke ({ commit }){
             try{
-                const respose = await chuckService.getRandomJoke()
-                
-                    commit('RANDOM', response)
-                    return response;                                  
+                const response = await chuckService.getRandomJoke()
+                               
+                commit('RANDOM', response)                                 
             }catch(error){
                 console.log(error)
             }
@@ -18,7 +17,7 @@ const chuckModule = {
     },
     mutations: {
         RANDOM(state, joke){
-            state.joke = joke;
+            state.joke = joke.value;
         }
     },
     getters: {

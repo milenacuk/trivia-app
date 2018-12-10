@@ -12,6 +12,7 @@ class ChuckService{
     getCategories(){
         return this.client.getJokeCategories();
     }
+    
 }
     
 const chuckService = new ChuckService();

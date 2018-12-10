@@ -2,27 +2,43 @@ import chuckService from '../services/ChuckService.js'
 
 const chuckModule = {
     state: {
-        joke: ''
+        joke: '',
+        categories: []
     },
     actions: {
-        async joke ({ commit }){
+        async getJoke ({ commit }, category){
             try{
-                const response = await chuckService.getRandomJoke()
+                // const response = await chuckService.getRandomJoke(category)
                                
-                commit('RANDOM', response)                                 
+                commit('RANDOM', await chuckService.getRandomJoke(category))                                 
             }catch(error){
+                console.log(error)
+            }
+        },
+        async getCategories ({ commit }){
+            try {
+                commit('SET_CATEGORIES', await chuckService.getCategories())
+            }
+            catch(error){
                 console.log(error)
             }
         }
     },
     mutations: {
-        RANDOM(state, joke){
-            state.joke = joke.value;
+        //ovde je state gore state joke, a joke State je response
+        RANDOM(state, jokeState){
+            state.joke = jokeState.value;
+        },
+        SET_CATEGORIES(state, categories){
+            state.categories = categories;
         }
     },
     getters: {
         returnJoke(state){
             return state.joke;
+        },
+        returnCategories(state){
+            return state.categories;
         }
     }
 

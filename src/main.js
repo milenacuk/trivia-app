@@ -13,7 +13,7 @@ Vue.use(Vuex)
 
 const routes = [
   { path: '/', redirect: '/triviaApp'},
-  { path: '/triviaApp', component: TriviaApp},
+  { path: '/trivia-app', component: TriviaApp},
   { path: '/chuck', component: Chuck}
 ]
 const store = new Vuex.Store({

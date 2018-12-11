@@ -27,7 +27,7 @@ const chuckModule = {
     mutations: {
         //ovde je state gore state joke, a joke State je response
         RANDOM(state, jokeState){
-            state.joke = jokeState.value;
+            state.joke = jokeState;
         },
         SET_CATEGORIES(state, categories){
             state.categories = categories;

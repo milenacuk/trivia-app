@@ -3,8 +3,8 @@ import  {triviaService}  from '../services/TriviaService.js'
 const triviaModule = {
 state: {
         trivia: [],
-        category: [],
-        listTrivia: []
+        category: []
+       
     },
     actions: {
        
@@ -19,7 +19,7 @@ state: {
         async getCategory( { commit }){
             try{
                 const cat = await triviaService.getCategory()
-                console.log({ cat })
+                // console.log({ cat })
                 commit('GET_CATEGORY', cat)
             }
             catch(error){
@@ -28,7 +28,7 @@ state: {
         },
         async getList({ commit }, id){
             try{
-                commit('GET_LIST_TRIVIA',await triviaService.getListTrivia(id))
+                commit('RANDOM_TRIVIA',await triviaService.getListTrivia(id))
             }
             catch(error){
                 console.log(error)
@@ -37,19 +37,17 @@ state: {
     },
     mutations:{
         RANDOM_TRIVIA(state, triviaResponse){
+            state.trivia=[];
             state.trivia = triviaResponse;
         },
         GET_CATEGORY(state,categoryResponse){
             state.category = categoryResponse;
-        },
-        GET_LIST_TRIVIA(state, listResponse){
-            state.listTrivia = listResponse;
         }
     },
     getters: {
         getRandomTrivia: state => state.trivia,
         getCategoryTrivia: state => state.category,
-        getTriviaGetters: state => state.listTrivia
+        
         
     }
 };

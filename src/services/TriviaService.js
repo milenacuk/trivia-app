@@ -28,10 +28,17 @@ import axios from 'axios'
             console.log(error)
         }
     }
-    getListTrivia(category, id){
-        return axios.get('category',{
-            params: { id: id}
+    async getListTrivia(id){
+        try{
+            const response = await axios.get('category/', {
+            params: {id: id}
         })
+        return response.date.clues
+        }
+        catch(error){
+            console.log(error)
+        }
+        
     }
  }
  export const triviaService = new TriviaService();
